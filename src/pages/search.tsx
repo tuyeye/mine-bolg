@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import TheList from '@/pages/assemblies/theList';
+import TheList from '@/pages/blogList/index';
 import { useParams } from "umi";
 
 export default () => {

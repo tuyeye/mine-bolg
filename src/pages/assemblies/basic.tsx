@@ -11,7 +11,7 @@ const { Paragraph } = Typography;
 const { TextArea } = Input;
 
 //请求头
-const baseUrl = process.env.NODE_ENV == "development" ? 'https://localhost:5001/blog' : 'http://api.twoyecloud.com/blog';
+const baseUrl = process.env.NODE_ENV == "development" ? 'http://api.twoyecloud.com/blog' : 'http://api.twoyecloud.com/blog';
 
 //title
 const Title: FC<any> = ({ str, href }) => {

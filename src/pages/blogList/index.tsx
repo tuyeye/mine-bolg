@@ -8,11 +8,15 @@ import {
     ArticleItem, PageChange
 } from '@/pages/assemblies/basic';
 import { requestParams } from './data.t';
+import { useResponsive } from 'ahooks';
 
 const namespace = 'blogList';
 
 const page: FC<any> = ({ blogList, dispatch, data, type }) => {
 
+    const { small, middle, large } = useResponsive();
+    const isSmall = small && !middle && !large;
+    
     const getData = async (page: number) => {
 
         let payload: requestParams = {
@@ -26,7 +30,7 @@ const page: FC<any> = ({ blogList, dispatch, data, type }) => {
         await dispatch({ type: `${namespace}/fetch`, payload });
 
         NProgress.done();
-        
+
     }
 
     const changePage = (page: number) => {
@@ -53,7 +57,7 @@ const page: FC<any> = ({ blogList, dispatch, data, type }) => {
                     blogList.data.length > 0 && (!blogList.loading) && (
                         <>
                             {blogList.data.map((item: any, index: number) => (
-                                <ArticleItem item={item} key={index} />
+                                <ArticleItem item={item} key={index} isSmall={isSmall} />
                             ))}
                             <PageChange pageNum={blogList.pageNum} total={blogList.total} pageSize={blogList.pageSize} changeFunction={changePage} />
                         </>

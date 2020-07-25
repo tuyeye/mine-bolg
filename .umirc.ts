@@ -22,6 +22,6 @@ export default defineConfig({
     { path: '/skill', component: '@/pages/skill', title: '技术 - share 공유 하 다.' },
     { path: '/search/:searchKey', component: '@/pages/search', title: '搜索 - share 공유 하 다.' },
     { path: '/detail/:id', component: '@/pages/detail', title: '文章详情 - share 공유 하 다.' },
-    { component: '@/pages/assemblies/404', title: '404 - share 공유 하 다.' },
+    { component: '@/pages/404', title: '404 - share 공유 하 다.' },
   ],
 });

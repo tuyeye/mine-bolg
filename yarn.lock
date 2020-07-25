@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+"@ahooksjs/use-request@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.npm.taobao.org/@ahooksjs/use-request/download/@ahooksjs/use-request-2.2.0.tgz#3fddbd9e9f50e91b1b4cc4b5166432a43bab9af4"
+  integrity sha1-P929np9Q6RsbTMS1FmQypDurmvQ=
+  dependencies:
+    lodash.debounce "^4.0.8"
+    lodash.throttle "^4.1.1"
+
 "@ant-design/colors@^3.1.0":
   version "3.2.2"
   resolved "https://registry.npm.taobao.org/@ant-design/colors/download/@ant-design/colors-3.2.2.tgz?cache=0&sync_timestamp=1592447248116&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40ant-design%2Fcolors%2Fdownload%2F%40ant-design%2Fcolors-3.2.2.tgz#5ad43d619e911f3488ebac303d606e66a8423903"
@@ -3006,6 +3014,19 @@ aggregate-error@^3.0.0:
   dependencies:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
+
+ahooks@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npm.taobao.org/ahooks/download/ahooks-2.2.0.tgz#a8ce56c7cb555a1b666b06918fcde66bdcab61da"
+  integrity sha1-qM5Wx8tVWhtmawaRj83ma9yrYdo=
+  dependencies:
+    "@ahooksjs/use-request" "^2.2.0"
+    intersection-observer "^0.7.0"
+    lodash.debounce "^4.0.8"
+    lodash.isequal "^4.5.0"
+    lodash.throttle "^4.1.1"
+    resize-observer-polyfill "^1.5.1"
+    screenfull "^5.0.0"
 
 ajv-errors@^1.0.0:
   version "1.0.1"
@@ -6510,6 +6531,11 @@ insert-css@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/insert-css/download/insert-css-2.0.0.tgz#eb5d1097b7542f4c79ea3060d3aee07d053880f4"
   integrity sha1-610Ql7dUL0x56jBg067gfQU4gPQ=
+
+intersection-observer@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.npm.taobao.org/intersection-observer/download/intersection-observer-0.7.0.tgz#ee16bee978db53516ead2f0a8154b09b400bbdc9"
+  integrity sha1-7ha+6XjbU1FurS8KgVSwm0ALvck=
 
 intl-format-cache@^4.2.19, intl-format-cache@^4.2.21:
   version "4.2.41"
@@ -11216,6 +11242,11 @@ schema-utils@^2.6.5:
     "@types/json-schema" "^7.0.4"
     ajv "^6.12.2"
     ajv-keywords "^3.4.1"
+
+screenfull@^5.0.0:
+  version "5.0.2"
+  resolved "https://registry.npm.taobao.org/screenfull/download/screenfull-5.0.2.tgz#b9acdcf1ec676a948674df5cd0ff66b902b0bed7"
+  integrity sha1-uazc8exnapSGdN9c0P9muQKwvtc=
 
 scroll-into-view-if-needed@^2.2.25:
   version "2.2.25"

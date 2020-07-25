@@ -2,7 +2,6 @@
 body,html{
     background: #F1F2F3;
     padding-top: 45px;
-    min-width: 1000px;
 }
 
 .layout-top{
@@ -17,7 +16,7 @@ body,html{
     left: 0;
     overflow: hidden;
     z-index: 999;
-    min-width: 1000px;
+   
 }
 
 .layout-top .main{
@@ -66,7 +65,17 @@ body,html{
     min-height: 400px;
 }
 
-.blog-body a{
+
+
+.blog-small-body{
+    width: 100%;
+    background: #fff;
+    margin: 0 auto; 
+    position: relative;
+    min-height: 400px;
+}
+
+.blog-body a,.blog-small-body a{
     color:#444;
 }
 

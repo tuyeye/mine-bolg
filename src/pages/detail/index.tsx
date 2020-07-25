@@ -2,18 +2,22 @@ import React, { FC, useEffect } from 'react';
 import Layout from '@/pages/layout/_layout';
 import { connect } from 'dva';
 import {
-    DashedBody, Title, Body, BreadInfo, RenderData, NoDashedBody,
+    Title, Body, BreadInfo,
     CommentSubmit
 } from '@/pages/assemblies/basic';
+import { RenderDatas, BodyDiv } from '@/pages/assemblies/Components';
 import { Skeleton } from 'antd';
 import NProgress from 'nprogress';
 import { useParams } from "umi";
-
+import { useResponsive } from 'ahooks';
 
 const namesapce = 'blogDetail';
-const page: FC = ({ blogDetail, dispatch }:any) => {
+const page: FC = ({ blogDetail, dispatch }: any) => {
 
     const params: any = useParams();
+
+    const { small, middle, large } = useResponsive();
+    const isSmall = small && !middle && !large;
 
     const getData = async () => {
         const payload = { id: params.id };
@@ -28,27 +32,27 @@ const page: FC = ({ blogDetail, dispatch }:any) => {
 
     return (
         <Layout notFound={blogDetail.notFound} lostConnect={blogDetail.lostConnect}>
-            <DashedBody>
+            <BodyDiv needDashed isSmall={isSmall}>
                 <Skeleton loading={blogDetail.loading} active>
                     {
                         blogDetail.data.breadInfo && (
                             <>
                                 <Title str={blogDetail.data.title} href='javascript:;' />
                                 <BreadInfo name={blogDetail.data.breadInfo.name} date={blogDetail.data.breadInfo.date} cate={JSON.parse(blogDetail.data.breadInfo.cate)} commentCount={blogDetail.data.breadInfo.commentCount} />
-                                <RenderData data={JSON.parse(blogDetail.data.datas)} />
+                                <RenderDatas data={JSON.parse(blogDetail.data.datas)} />
                                 <Body str={blogDetail.data.body} />
                             </>
                         )
                     }
                 </Skeleton>
-            </DashedBody>
-            <NoDashedBody>
+            </BodyDiv>
+            <BodyDiv>
                 <Skeleton loading={blogDetail.loading}>
                     {
                         blogDetail.data.breadInfo && (<CommentSubmit discomment={blogDetail.data.discomment} />)
                     }
                 </Skeleton>
-            </NoDashedBody>
+            </BodyDiv>
         </Layout>
     )
 }

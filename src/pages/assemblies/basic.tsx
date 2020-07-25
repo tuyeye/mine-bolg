@@ -1,14 +1,15 @@
 import React, { FC } from 'react';
-import RenderData from './datas';
 import moment from 'moment';
 import {
     Typography, Breadcrumb, Pagination, Input, Form,
     Row, Col, Button
 } from 'antd';
+import { RenderDatas, BodyDiv } from './Components';
 import './styles/blogItem.css';
 
 const { Paragraph } = Typography;
 const { TextArea } = Input;
+
 
 //请求头
 const baseUrl = process.env.NODE_ENV == "development" ? 'http://api.twoyecloud.com/blog' : 'http://api.twoyecloud.com/blog';
@@ -26,7 +27,7 @@ const Title: FC<any> = ({ str, href }) => {
 const BreadInfo: FC<any> = ({ name, date, cate, commentCount }) => {
     return (
         <Breadcrumb style={{ fontSize: '12px' }}>
-            <Breadcrumb.Item><a href="javascript:;">{name}</a> 发表于 {moment(date).format('YYYY年MM月DD日 HH:mm')}</Breadcrumb.Item>
+            <Breadcrumb.Item>发表于 {moment(date).format('YYYY年MM月DD日 HH:mm')}</Breadcrumb.Item>
             <Breadcrumb.Item>
                 <Breadcrumb separator="," style={{ fontSize: '12px', display: 'inline-block' }}>
                     {
@@ -63,28 +64,6 @@ const Body: FC<any> = ({ str }) => (
         <div dangerouslySetInnerHTML={{ __html: str }} className="braft-output-content" />
     </div>
 )
-
-//虚线边框
-const DashedBody: FC<any> = ({ children }) => {
-    return (
-        <div style={{ borderBottom: '1px dashed #ddd', padding: '50px 0' }}>
-            <div style={{ width: '850px', margin: '0 auto', position: 'relative' }}>
-                {children}
-            </div>
-        </div>
-    )
-}
-
-//无虚线边框
-const NoDashedBody: FC<any> = ({ children }) => {
-    return (
-        <div style={{ padding: '50px 0' }}>
-            <div style={{ width: '850px', margin: '0 auto', position: 'relative' }}>
-                {children}
-            </div>
-        </div>
-    )
-}
 
 //分页
 const PageChange: FC<any> = ({ pageNum, pageSize, total, changeFunction }) => {
@@ -151,17 +130,16 @@ const CommentSubmit: FC<any> = ({ discomment }) => {
 }
 
 //一个文章 item
-const ArticleItem: FC<any> = ({ item }) => (
-    <DashedBody>
+const ArticleItem: FC<any> = ({ item, isSmall }) => (
+    <BodyDiv needDashed isSmall={isSmall}>
         <Title str={item.title} href={`/detail/${item.id}`} />
-        <RenderData data={JSON.parse(item.datas)} />
+        <RenderDatas data={JSON.parse(item.datas)} isList />
         <PreBody str={item.prebody} />
         <BreadInfo name='博主' date={item.datetime} cate={JSON.parse(item.classify)} commentCount={item.commentCount} />
-    </DashedBody>
+    </BodyDiv>
 )
 
-
 export {
-    Title, DashedBody, NoDashedBody, BreadInfo, PreBody, RenderData, PageChange, Body,
-    CommentSubmit, ArticleItem,baseUrl
+    Title, BreadInfo, PreBody, PageChange, Body,
+    CommentSubmit, ArticleItem, baseUrl
 };

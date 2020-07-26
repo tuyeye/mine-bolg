@@ -101,7 +101,7 @@ const Nav: FC<any> = ({ isSmall }) => {
 }
 
 //渲染 datas-------
-const RenderImg: FC<any> = ({ data, isList }) => {
+const RenderImg: FC<any> = ({ data, isList, isSmall }) => {
 
     const [config, setConfig] = useState<ImgItemConfig>({
         list: [],
@@ -114,7 +114,11 @@ const RenderImg: FC<any> = ({ data, isList }) => {
 
         if (isList) showList = showList.slice(0, 4);
 
+        if (isList && isSmall) showList = showList.slice(0, 1);
+
         let length = showList.length > 4 ? 4 : showList.length;
+
+        if (isSmall) length = 1;
 
         let theData: any[] = [];
         showList.forEach((url: string) => {
@@ -129,7 +133,7 @@ const RenderImg: FC<any> = ({ data, isList }) => {
             width: `${100 / length}%`
         });
 
-    }, []);
+    }, [isSmall]);
 
 
     return (
@@ -156,12 +160,12 @@ const RenderImg: FC<any> = ({ data, isList }) => {
     )
 }
 
-const RenderDatas: FC<any> = ({ data, isList }: any) => {
+const RenderDatas: FC<any> = ({ data, isList, isSmall }: any) => {
 
     return (
         <div style={{ margin: '20px 0' }}>
 
-            {data.type === 'image' && (<RenderImg data={data} isList={isList} />)}
+            {data.type === 'image' && (<RenderImg data={data} isList={isList} isSmall={isSmall} />)}
 
             {data.type === 'video' && (
                 <QueueAnim

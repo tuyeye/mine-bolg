@@ -39,7 +39,7 @@ const page: FC = ({ blogDetail, dispatch }: any) => {
                             <>
                                 <Title str={blogDetail.data.title} href='javascript:;' />
                                 <BreadInfo name={blogDetail.data.breadInfo.name} date={blogDetail.data.breadInfo.date} cate={JSON.parse(blogDetail.data.breadInfo.cate)} commentCount={blogDetail.data.breadInfo.commentCount} />
-                                <RenderDatas data={JSON.parse(blogDetail.data.datas)} />
+                                <RenderDatas data={JSON.parse(blogDetail.data.datas)} isSmall={isSmall}/>
                                 <Body str={blogDetail.data.body} />
                             </>
                         )

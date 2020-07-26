@@ -133,7 +133,7 @@ const CommentSubmit: FC<any> = ({ discomment }) => {
 const ArticleItem: FC<any> = ({ item, isSmall }) => (
     <BodyDiv needDashed isSmall={isSmall}>
         <Title str={item.title} href={`/detail/${item.id}`} />
-        <RenderDatas data={JSON.parse(item.datas)} isList />
+        <RenderDatas data={JSON.parse(item.datas)} isList isSmall={isSmall}/>
         <PreBody str={item.prebody} />
         <BreadInfo name='博主' date={item.datetime} cate={JSON.parse(item.classify)} commentCount={item.commentCount} />
     </BodyDiv>

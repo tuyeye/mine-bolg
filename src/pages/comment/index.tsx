@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { connect } from 'dva';
-import { Form, Input, Row, Col, Button, Popover, Comment, Avatar, message, Spin } from 'antd';
+import { Form, Input, Row, Col, Button, Comment, Avatar, message, Spin, Modal } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { useParams } from "umi";
 import moment from 'moment';
@@ -63,46 +63,41 @@ const RepeatCompt: FC<any> = ({ isSmall, dispatch, parent_id, hide }) => {
     )
 }
 
-const BaseComment: FC<any> = ({ children, id, name, body, datetime, allowRepeat, isSmall, dispatch }) => {
+const BaseComment: FC<any> = ({ children, id, name, body, datetime, allowRepeat, dispatch }) => {
 
     const [vis, setVis] = useState<boolean>(false);
 
-    const handleVisibleChange = (visible: boolean) => {
-        setVis(visible);
-    };
-
-
     return (
-        <Comment
-            datetime={moment(datetime).format("YYYY年MM月DD日 HH:mm")}
-            actions={allowRepeat ? [
-                <Popover
-                    trigger="click"
-                    placement="topRight"
-                    visible={vis}
-                    onVisibleChange={handleVisibleChange}
-                    content={
-                        <RepeatCompt isSmall={isSmall} dispatch={dispatch} parent_id={id} hide={() => { setVis(false) }} />
-                    }
-                >
-                    <span key="comment-nested-reply-to">回复</span>
-                </Popover>
-            ] : []}
-            author={<a href="javascript:;">{name}</a>}
-            avatar={
-                <Avatar shape="square" icon={<UserOutlined />} />
-            }
-            content={
-                <p>
-                    {body}
-                </p>
-            }
-        >
-            {children}
-        </Comment>
+        <>
+            <Comment
+                datetime={moment(datetime).format("YYYY年MM月DD日 HH:mm")}
+                actions={allowRepeat ? [
+                    <span key="comment-nested-reply-to" onClick={()=>setVis(true)}>回复</span>
+                ] : []}
+                author={<a href="javascript:;">{name}</a>}
+                avatar={
+                    <Avatar shape="square" icon={<UserOutlined />} />
+                }
+                content={
+                    <p>
+                        {body}
+                    </p>
+                }
+            >
+                {children}
+            </Comment>
+            <Modal
+                visible={vis}
+                onCancel={() => setVis(false)}
+                title={`回复 ${name}`}
+                footer={null}
+                
+            >
+                <RepeatCompt isSmall={true} dispatch={dispatch} parent_id={id} hide={() => { setVis(false) }} />
+            </Modal>
+        </>
     )
 };
-
 
 const Comments: FC<any> = ({ comment: { data, total, loading }, dispatch, discomment, isSmall }) => {
 

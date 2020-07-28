@@ -2,10 +2,10 @@ import React, { FC, useEffect } from 'react';
 import Layout from '@/pages/layout/_layout';
 import { connect } from 'dva';
 import {
-    Title, Body, BreadInfo,
-    CommentSubmit
+    Title, Body, BreadInfo
 } from '@/pages/assemblies/basic';
 import { RenderDatas, BodyDiv } from '@/pages/assemblies/Components';
+import CommentSubmit from '@/pages/comment/index';
 import { Skeleton } from 'antd';
 import NProgress from 'nprogress';
 import { useParams } from "umi";
@@ -49,7 +49,7 @@ const page: FC = ({ blogDetail, dispatch }: any) => {
             <BodyDiv>
                 <Skeleton loading={blogDetail.loading}>
                     {
-                        blogDetail.data.breadInfo && (<CommentSubmit discomment={blogDetail.data.discomment} />)
+                        blogDetail.data.breadInfo && (<CommentSubmit discomment={blogDetail.data.discomment} isSmall={isSmall}/>)
                     }
                 </Skeleton>
             </BodyDiv>

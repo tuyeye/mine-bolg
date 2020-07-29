@@ -58,7 +58,7 @@ const Body: FC<any> = ({ str }) => (
 const PageChange: FC<any> = ({ pageNum, pageSize, total, changeFunction }) => (
     <div style={{ width: '100%', height: '80px' }}>
         <Pagination
-            defaultCurrent={pageNum + 1}
+            current={pageNum + 1}
             total={total}
             pageSize={pageSize}
             style={{ width: 'fit-content', margin: '40px auto' }}

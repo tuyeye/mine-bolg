@@ -7,13 +7,14 @@ export default {
         loading: false,
         lostConnect: false,
         pageNum: 0,
-        pageSize:5,
+        pageSize: 5,
         total: 0
     },
     effects: {
         *fetch({ payload }: any, { call, put }: any) {
             yield put({ type: "setLoading" });
             const res = yield call(queryArticleList, payload);
+            res.pageNum = payload.pageNum;
             if (!res) yield put({ type: "lostConnect" });
             else yield put({ type: "saveData", payload: res });
         }
@@ -35,8 +36,8 @@ export default {
         saveData: (state: any, { payload }: any) => {
             return {
                 ...state,
-                loading:false,
-                lostConnect:false,
+                loading: false,
+                lostConnect: false,
                 ...payload
             }
         }

@@ -72,7 +72,7 @@ const BaseComment: FC<any> = ({ children, id, name, body, datetime, allowRepeat,
             <Comment
                 datetime={moment(datetime).format("YYYY年MM月DD日 HH:mm")}
                 actions={allowRepeat ? [
-                    <span key="comment-nested-reply-to" onClick={()=>setVis(true)}>回复</span>
+                    <span key="comment-nested-reply-to" onClick={() => setVis(true)}>回复</span>
                 ] : []}
                 author={<a href="javascript:;">{name}</a>}
                 avatar={
@@ -91,7 +91,7 @@ const BaseComment: FC<any> = ({ children, id, name, body, datetime, allowRepeat,
                 onCancel={() => setVis(false)}
                 title={`回复 ${name}`}
                 footer={null}
-                
+
             >
                 <RepeatCompt isSmall={true} dispatch={dispatch} parent_id={id} hide={() => { setVis(false) }} />
             </Modal>
@@ -115,18 +115,27 @@ const Comments: FC<any> = ({ comment: { data, total, loading }, dispatch, discom
             {
                 !discomment && (
                     <>
-                        <h3>共 {total} 条评论</h3>
-                        <Spin spinning={loading} tip="请稍后 ...">
-                            {data.map((item: any, index: number) => (
-                                <BaseComment {...item} key={index} allowRepeat isSmall={isSmall} dispatch={dispatch}>
-                                    {
-                                        item.children.map((e: any, f: number) => (
-                                            <BaseComment {...e} key={f} />
-                                        ))
-                                    }
-                                </BaseComment>
-                            ))}
-                        </Spin>
+                        {total !== 0 && (
+                            <>
+                                <h3>共 {total} 条评论</h3>
+                                <Spin spinning={loading} tip="请稍后 ...">
+                                    {data.map((item: any, index: number) => (
+                                        <BaseComment {...item} key={index} allowRepeat isSmall={isSmall} dispatch={dispatch}>
+                                            {
+                                                item.children.map((e: any, f: number) => (
+                                                    <BaseComment {...e} key={f} />
+                                                ))
+                                            }
+                                        </BaseComment>
+                                    ))}
+                                </Spin>
+                            </>
+                        )}
+                        {
+                            total===0&&(
+                                <div className='no-content'>还没有人评论呢，快来评论吧 ～</div>
+                            )
+                        }
                         <RepeatCompt isSmall={isSmall} dispatch={dispatch} />
                     </>
                 )

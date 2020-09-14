@@ -49,7 +49,7 @@ const layout: FC<any> = ({ children, lostConnect, notFound }) => {
                 {body}
             </div>
             <div className='footer'>
-                ©{(new Date()).getFullYear()} 浙ICP备18036473号
+                ©{(new Date()).getFullYear()} 彼岸花网
             </div>
             <BackTop />
         </>

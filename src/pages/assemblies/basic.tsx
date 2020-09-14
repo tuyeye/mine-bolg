@@ -10,7 +10,7 @@ const { Paragraph } = Typography;
 
 
 //请求头
-const baseUrl = process.env.NODE_ENV == "development" ? 'http://api.twoyecloud.com/blog' : 'http://api.twoyecloud.com/blog';
+const baseUrl = process.env.NODE_ENV == "development" ? 'http://api.sanqi.us/blog' : 'http://api.sanqi.us/blog';
 
 //title
 const Title: FC<any> = ({ str, href }) => (
@@ -21,7 +21,7 @@ const Title: FC<any> = ({ str, href }) => (
 //信息
 const BreadInfo: FC<any> = ({ name, date, cate, commentCount }) => (
     <Breadcrumb style={{ fontSize: '12px' }}>
-        <Breadcrumb.Item>发表于 {moment(date).format('YYYY年MM月DD日 HH:mm')}</Breadcrumb.Item>
+        <Breadcrumb.Item>发表于 {date}</Breadcrumb.Item>
         <Breadcrumb.Item>
             <Breadcrumb separator="," style={{ fontSize: '12px', display: 'inline-block' }}>
                 {
